@@ -2,7 +2,17 @@
 \BOOKMARK [1][-]{section.2}{Functional Decomposition}{}% 2
 \BOOKMARK [1][-]{section.3}{Data Flow and Application Structure}{}% 3
 \BOOKMARK [1][-]{section.4}{User Stories and Tasks}{}% 4
-\BOOKMARK [1][-]{section.5}{Pseudocode}{}% 5
-\BOOKMARK [1][-]{section.6}{Reflection}{}% 6
-\BOOKMARK [1][-]{section.7}{Conclusion}{}% 7
-\BOOKMARK [1][-]{section.8}{Team Member Participation}{}% 8
+\BOOKMARK [1][-]{section.5}{Derived tasks and Pseudocode}{}% 5
+\BOOKMARK [2][-]{subsection.5.1}{Detect faces in video}{section.5}% 6
+\BOOKMARK [2][-]{subsection.5.2}{Calculate temperature discrepancy and adjust the camera}{section.5}% 7
+\BOOKMARK [2][-]{subsection.5.3}{Measure temperature within the segment of the thermal image that corresponds to the user\220s face}{section.5}% 8
+\BOOKMARK [2][-]{subsection.5.4}{Check if user is registered}{section.5}% 9
+\BOOKMARK [2][-]{subsection.5.5}{Send notifications to user and alerts to screen}{section.5}% 10
+\BOOKMARK [2][-]{subsection.5.6}{Compare user temperature to past temps and check for too high temp}{section.5}% 11
+\BOOKMARK [2][-]{subsection.5.7}{Register facial data through app}{section.5}% 12
+\BOOKMARK [2][-]{subsection.5.8}{Register users through app}{section.5}% 13
+\BOOKMARK [2][-]{subsection.5.9}{Allow admin to control data requested and storage duration}{section.5}% 14
+\BOOKMARK [2][-]{subsection.5.10}{Produce reports for organization and users}{section.5}% 15
+\BOOKMARK [1][-]{section.6}{Reflection}{}% 16
+\BOOKMARK [1][-]{section.7}{Conclusion}{}% 17
+\BOOKMARK [1][-]{section.8}{Team Member Participation}{}% 18

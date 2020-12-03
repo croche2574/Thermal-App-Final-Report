@@ -112,7 +112,137 @@
         \caption{Epics and User Stories}
         \label{tab:multicol}
     \end{table}
-    \section{Pseudocode}
+    \section{Derived tasks and Pseudocode}
+    The following tasks and Pseudocode were derived from the user stories listed in Table \ref{tab:multicol}.
+    \subsection{Detect faces in video}
+    Face detection is used to determine whether a user has entered the view of the camera in order to 
+    begin facial recognition and measuring their temperature. This is done using the opencv library in 
+    Python.
+    \begin{algorithm}
+        Read camera stream
+        Use OpenCV to detect faces
+        Store face pixel array in var
+        Apply smoothing and post processing
+        Return section array
+    \end{algorithm}
+    \subsection{Calculate temperature discrepancy and adjust the camera}
+    The thermal camera is known to lose accuracy depending on the surrounding temperature and weather 
+    conditions. A hot plate will be placed in the vision of the thermal camera and will be used to 
+    calibrate it. This will provide more consistent and accurate measurements.
+    \begin{algorithm}[caption={Thermal cam calibration.}, label={alg1}]
+        timer: every 3 minutes
+        on timer firing
+            select section of video containing calibration device
+            measure temperature
+            if measured temperature does not equal set value for temperature
+                subtract set from measured temp
+                adjust calibration by result
+    \end{algorithm}
+    \subsection{Measure temperature within the segment of the thermal image that corresponds to the user’s face}
+    Once the user's face has been segmented from the video stream, the rgb and thermal images need to be 
+    compared and the correct pixels measured for temperature.  Because the resolution is different between the images,
+    additional calculations are required. The data from the thermal camera is then returned.
+    \begin{algorithm}[caption={Temperatur reading.}, label={alg1}]
+        Receive array of pixel data containing face
+        Calculate corresponing pixel locations in thermal image
+        return thermal readings from those locations
+    \end{algorithm}
+    \subsection{Check if user is registered}
+    Once a face is detected within the cameras vision, the application will use facial detection to 
+    store the users facial data and compare it to the facial data already stored in the database to 
+    check whether the has been registered through the system.
+    \begin{algorithm}[caption={Facial info search.}, label={alg1}]
+        Connect to database
+        Receive tuple with facial data files
+        Loop for length in tuple
+            If new data is equivalent to registered data
+                User is registered
+                Break loop
+    \end{algorithm}
+    \subsection{Send notifications to user and alerts to screen}
+    If a high temperature is detected by the system, the application will send an alert through the 
+    screen on the tablet and to a kiosk attendee and the user. The system will also be able to send an 
+    alert to the attendee if the user is not registered.
+    \begin{algorithm}[caption={Temperature notification}, label={alg1}]
+        If high temperature detected
+            Display high temperature alert on screen
+            Connect to database
+            Search for email using user id
+            Send message to user email
+            Send alert to attendee email
+    \end{algorithm}
+    \subsection{Compare user temperature to past temps and check for too high temp}
+    The application will consider the average temperature of the user by searching through the user’s 
+    past scans and taking the average of their temperature history. A limit will be set based on their 
+    average temperature. If the user’s temperature passes that limit it will be considered a high 
+    temperature.
+    \begin{algorithm}[caption={Check user temperature}, label={alg1}]
+        Search database for user temperature history using user id
+        Receive array with past temperatures
+        Initialize counter at 0
+        Initialize sum at 0
+        Loop for size of array
+            Sum is equal to sum plus tuple[counter]
+            Average is equal to sum divided by size of array
+            Limit is equal to average plus 3 degrees Fahrenheit
+            If limit is greater than current temp
+                User temp passes
+            Else
+                User temp fail
+    \end{algorithm}
+    \subsection{Register facial data through app}
+    To reduce the amount of time the user needs to spend registering in person, and to improve registration
+    times for large userbases, users will be able to register for the facial recognition from a companion app.  
+    Several images will be captured, the algorithm will be trained, and then the images will be deleted and the model
+    stored in the database.
+    \begin{algorithm}[caption={Register facial data}, label={alg1}]
+        App receives access to phone camera
+        Use facial detection to detect face
+        If face detected
+            Take pictures of user
+            Convert pictures into facial recognition data files
+            Send files to database
+    \end{algorithm}
+    \subsection{Register users through app}
+    Users will be required to provide some identifying piece of information to create an account and eventually register
+    facial recognition data
+    \begin{algorithm}[caption={Register user data}, label={alg1}]
+        User enters identifier
+        User enters password
+        Form entries are verified for format with regex
+        If info matches format
+            Create new entry in database
+            Store user info
+            Send user confirmation email
+        if user confirms
+            finalize user registration
+    \end{algorithm}
+    \subsection{Allow admin to control data requested and storage duration}
+    User data collected for registration will vary based on use case.  Most use cases will minimize data collected
+    to an Employee ID number, but the admin may want to collect more data.  To account for these variations, the 
+    application will allow the admin to set what information will be collected and how long the data will be stored.
+    \begin{algorithm}[caption={Manage User data settings}, label={alg1}]
+        Display list of options with on/off toggles
+        Display data storage duration with default value of 1 month
+        if at least one option is selected
+            enable save button
+        on save button clicked
+            set user data requirements
+            set data expiration time
+    \end{algorithm}
+    \subsection{Produce reports for organization and users}
+    Companies and users will be able to view reports of temperature measured and time/location the data was collected.
+    Company reports will list all users for a period of time, including times, location and temperature.  Users will have
+    access to similar reports, but only applying to them.
+    \begin{algorithm}
+        Request time period for reports (Default is 1 month)
+        if Company
+            query db for users recorded during that period
+            display sortable table listing users, locations and temperature
+        if User
+            query db for users recorded during that period
+            display sortable table listing locations and temperature for that user
+    \end{algorithm}
     \section{Reflection}
     \section{Conclusion}
     \section{Team Member Participation}
