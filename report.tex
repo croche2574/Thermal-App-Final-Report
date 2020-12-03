@@ -36,9 +36,57 @@
     \tableofcontents
     \newpage
     \section{Introduction}
+    \paragraph{}
+    Corserva is a managed IT service provider that develops and sells custom software and 
+    hardware solutions. Corserva's customers include hospitality and other in-person focused 
+    related businesses. Official CDC guidelines to businesses encourage taking steps to prevent 
+    the spread of Covid-19 among employees and customers, including temperature checks. Corserva 
+    has sponsored this project to produce a thermal screening solution capable of processing 
+    people quickly and without requiring user interaction to minimize additional contact.
+    \paragraph{}
+    The scope of this project is to produce an application and companion mobile application to 
+    measure and report high temperatures of people passing through the system. The thermal 
+    camera will use an auto calibration system to increase accuracy of readings. Mobile 
+    application to smooth the onboarding process and provide reports to users.
+    \paragraph{}
+    The business scope is to provide business with a kiosk and mobile app
+    system that will make it easier for them to maintain safety precautions during
+    the current Covid 19 pandemic while also increasing the speed in which staff and customers 
+    can enter their place of business.
     \section{Functional Decomposition}
+    \begin{figure}
+        
+    \end{figure}
     \section{Dataflow Diagrams}
+    
     \section{User Stories and Tasks}
+    \begin{table}[ht!]
+        \begin{center}
+        \begin{tabular}{|>{\centering \arraybackslash}m{3.7cm}|>{\centering \arraybackslash}m{8.5cm}|}
+            \hline
+            Epic & User Story\\
+            \hline
+            \multirow{4}{3cm}{Provide facial recognition for user identification and measure user temperature}
+                &As a user, I want the system to recognize me in under 2 seconds so I can save time\\\hhline{~-} 
+                &As a kiosk attendant, I want to see a confirmation that the user is recognized, for security purposes\\\hhline{~-} 
+                &As a kiosk attendant, I want temp measurements to be accurate withing a degree, so I do not have to check extra people/miss people\\\hhline{~-} 
+                &As a kiosk attendant, I want the thermal camera to self-calibrate, to avoid the need for time consuming troubleshooting\\
+            \hline
+            \multirow{3}{3cm}{Provide notifications and reports to users and attendants}
+                &As a kiosk attendant, I should be alerted if a registered user is detected with a high temperature to perform a manual temperature check\\\hhline{~-} 
+                &As a kiosk attendant, I should be alerted if a person is not recognized as a registered user\\\hhline{~-} 
+                &As a user, I should be alerted if my temperature is too high\\\hhline{~-}
+            \hline
+            \multirow{3}{3cm}{Provide a user onboarding system}
+                &As a user, I want to register through a mobile app, for easier remote registration\\\hhline{~-} 
+                &As a user, I want to register facial data through the app, so I can skip in person registration\\\hhline{~-} 
+                &As a system admin, I want to have control over what information is collected from users and how long the data is stored, to increase security\\\hhline{~-} 
+            \hline
+        \end{tabular}
+        \end{center}
+        \caption{Epics and User Stories}
+        \label{tab:multicol}
+    \end{table}
     \section{Pseudocode}
     \section{Reflection}
     \section{Conclusion}
